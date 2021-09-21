@@ -1,0 +1,47 @@
+Project 1 - Joey Carusone
+
+Part 1:
+1. Downloading your ISO.
+	You will first have to choose your ISO (A Disk Image). Each different operating system and version have their different ISOs.
+	For this example, we will be using Kali Linux. Download: https://www.kali.org/get-kali/#kali-virtual-machines
+2. Hypervisor
+	Next you will need a hypervisor that works for your host OS (Operating System). For this example, we will be using Oracle VM VirtualBox. 
+	Download: https://www.virtualbox.org/
+3. Creating your VM (Virtual Machine)
+	- Run VirtualBox and navigate to Machine > New.
+	- Name your machine
+	- Make sure the machine path is correct
+	- Choose the type of operating system you will be using for this machine.
+	- Choose the version (or distribution) of the operation system you will be using for this machine.
+	- Choose the memory size for your machine. This will be the amount of RAM the virtual machine is allowed to use from the host. I wouldn't recommend going over half.
+	  NOTE: You cannot pull hardware from thin air. You cannot request more storage / memory than your host machine has.
+	- In the next screen, choose "Create a virtual hard disk." This will be your storage system.
+	- For your Hard disk file type, keep the default "VDI (Virtual Disk Image) setting.
+	- While the Storage on physical hard disk type is preference...I like to choose Dynamically allocated as this will allow me to have some extra storage space on my host pc until that storage is needed from the VM. The VM will never take more resources than allocated to it.
+	- In "File Location and size" choose a path for your virtual hard disk file and allocate however much space you would like to the VM.
+	You have now created your VM!
+4. Hold on...what about that funky ISO file?
+	- Double click the VM on the left-hand side to open it. You should be prompted to choose a start-up disk. In this case...you're now going to choose the ISO you downloaded earlier. 
+	- After you selected the ISO...the machine will boot up for the first time and you will have magically created a computer in your computer!
+5. Guest Additions
+	- You now have the choice to install the Guest Additions pack which include a whole lot of nifty things such as: Shared Folders between host/guest OS. Shared clipboard and drag-and-drop between guest/host OS. Better window management...and more!
+	- Simply power up your VM and head to the Devices tab at the top. From there look for "Insert Guest Additions CD Image..."
+	- Windows will now think that you inserted a new physical disk into your pc. Head to the file explorer and find that mounted file called "Vbox_GAs_X.X.XX"
+	- Open this file and click the "VBoxWindowsAdditions.exe" file. Run it and go through the installation wizard.
+6. To Exit your VM...simply take a leap of faith and X out at the top right and hope you get that freaky little prompt! Your prompt will ask if you want to create a save state (just like in a video game), sleep the machine, or power off the machine.
+
+Part 2:
+1. My machine folder is saved to "C:\Users\JSlips\VirtualBox VMs" and from my experience, I cannot access the files or folder of my guest OS from my host OS. I can see logs and snapshots...but I can't open a folder and view the file explorer of my guest OS. 
+	I believe this is a security reason.
+2. My machine folder takes up just about 12gb. Due to my configuration settings, this space will dynamically change depending how much I request from my VM...however than number will never exceed the pre-determined storage cap I set for it in the installation wizard.
+3. Snapshots act as game saves. You could have multiple saves of your VM and create snapshots if you're about to "fight a boss." AKA- If you die you can go back and try again :) Snapshots are large in the sense that it is a back-up of your machine...but the space will never exceed your VM size you set for it.
+4. Templates are basically the complete installation wizard from Part 1 of the project...except it is a saved preset for easy use later. Templates are small configuration files and do not take up much space.
+
+Part 3:
+In this part, I will be explaining how to configure and use Bridged Networking. 
+	- In VirtualBox, right click your VM and click Settings.
+	- Click Enable Network Adapter...and under it choose Attached to: Bridged Adapter. Hit OK and save. 
+When using bridged networking, the net filter driver is used. Using net filter, the host system filters data from the physical network driver of the host.
+Net filter helps take data from a physical network and translate and inject data into it. When we use a software adapter...the guest is receiving the data that the host is sending out. It makes a bridge!  
+Your guest VM does not have a network accessible address, in this case the guest OS is getting network access through the "bridge" between the host OS and guest OS.
+
